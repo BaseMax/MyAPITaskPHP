@@ -1,23 +1,20 @@
 <?php
 
-    require_once "database.php";
     require_once "functions.php";
 
-    if(!empty($_POST)){
-        if(
-            $_POST["title"] && 
-            $_POST["description"] && 
-            $_POST["status"]
-        ){
-            $title = Check( $_POST["title"]);
-            $description = Check( $_POST["description"]);
-            $status = Check( $_POST["status"]);
+    $url = $_SERVER['REQUEST_URI'];
+    if($_SERVER["REQUEST_METHOD"] == "POST"){}
 
-            Create($title, $description, (bool) $status);
+
+    if($_SERVER["REQUEST_METHOD"] == "GET"){
+        $route =  split($url);
+
+        if($route[count($route) - 1] == ""){
+            echo "main page";
+        }else if($route[count($route) - 1] == "about"){
+            echo "About";
         }
     }
-    else if(!empty($_GET)){
-        echo "wellcome";
-    }
+
 
 ?>
