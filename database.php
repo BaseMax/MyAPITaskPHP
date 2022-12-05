@@ -1,20 +1,15 @@
 <?php
-/**
- * 
- */
 
-// Please put your user name and password and server name in below
-$ServerName = "localhost";
-$Password = "";
-$UserName = "root";
-$DatabaseName = "todos";
-
+require_once "Enum.php";
+$SRVName = Credentials::ServerName;
+$DBName = Credentials::DatabaseName;
+$TBName = Credentials::TableName;
 try{
-    $Connection = new PDO("mysql:host=$ServerName", $UserName, $Password);
+    $Connection = new PDO("mysql:host=$SRVName", Credentials::UserName, Credentials::Password);
     $Connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $Connection->exec("CREATE DATABASE $DatabaseName");
-    $Connection->exec("USE $DatabaseName");
-    $query = "CREATE TABLE tasks (
+    $Connection->exec("CREATE DATABASE $DBName");
+    $Connection->exec("USE $DBName");
+    $query = "CREATE TABLE $TBName (
         id INT(6) PRIMARY KEY,
         title VARCHAR(30) NOT NULL,
         description VARCHAR(500) NOT NULL,
