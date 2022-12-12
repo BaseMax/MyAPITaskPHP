@@ -19,6 +19,9 @@ function Query_splitter($queryString){
     if ($queryString) {
         $arrayOfData = explode("&", $queryString);
         foreach ($arrayOfData as $query) {
+            if(!str_contains($query, "=")){
+                continue;
+            }
             list($key, $value) = explode("=", $query);
             $key = Check($key);
             $value = Check($value);
