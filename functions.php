@@ -14,4 +14,27 @@ function split($url){
     return $Result;
 }
 
+function Query_splitter($queryString){
+    $finalArray = [];
+    if ($queryString) {
+        $arrayOfData = explode("&", $queryString);
+        foreach ($arrayOfData as $query) {
+            list($key, $value) = explode("=", $query);
+            $key = Check($key);
+            $value = Check($value);
+            if ($value) {
+                $finalArray[$key] = $value;
+            }
+        }
+    }
+    return $finalArray;
+}
+
+
+/*
+
+
+
+
+*/
 ?>

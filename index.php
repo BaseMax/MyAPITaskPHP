@@ -121,14 +121,15 @@
     //         echo "About";
     //     }
     // }
-    
+    require_once "functions.php";
 
 
     if($_SERVER["REQUEST_METHOD"] == "GET"){
-        // echo $_SERVER["REQUEST_URI"];
-        switch($_SERVER["QUERY_STRING"]){
-            case "":
-                require __DIR__ . "/GetAll.php";
+        $querys = Query_splitter($_SERVER["QUERY_STRING"]);
+        if(empty($querys)){
+            echo "All Tasks";
+        }else if(!empty($querys["q"])){
+            echo "Search with {$querys['q']} keyword";
         }
     }
 
