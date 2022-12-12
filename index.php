@@ -131,6 +131,18 @@
         }else if(!empty($querys["q"])){
             echo "Search with {$querys['q']} keyword";
         }
+
+
+
+        
+        if(!empty($querys["opt"])){
+            $options = dash_splitter($querys["opt"]);
+            if(in_array("c", $options)){
+                echo "list of all columns";
+            }
+        }
     }
+
+
 
 ?>

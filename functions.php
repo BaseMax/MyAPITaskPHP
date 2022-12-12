@@ -33,11 +33,14 @@ function Query_splitter($queryString){
     return $finalArray;
 }
 
+function dash_splitter($str){
+    $result = explode("-", $str);
+    $type = gettype($result);
+    if($type == "array"){
+        return $result;
+    }else{
+        return [$result];
+    }
+}
 
-/*
-
-
-
-
-*/
 ?>
