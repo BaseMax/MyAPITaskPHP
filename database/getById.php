@@ -2,14 +2,11 @@
 
 require_once "./database/connection.php";
 
-function getById(int $id)
+function GetById(int $id)
 {
     global $tableName, $connection;
-    $query = "SELECT * FROM :tableName WHERE task_id = :id";
+    $query = "SELECT * FROM $tableName WHERE task_id = $id;";
     $stmt = $connection->prepare($query);
-    $stmt->execute([
-        "tableName" => $tableName,
-        "id" => $id
-    ]);
+    $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
