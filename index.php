@@ -55,7 +55,7 @@
 //     ["SERVER_SIGNATURE"]=>
 //     string(95) "
 //   Apache/2.4.54 (Win64) OpenSSL/1.1.1p PHP/8.1.12 Server at localhost Port 80
-  
+
 //   "
 //     ["SERVER_SOFTWARE"]=>
 //     string(47) "Apache/2.4.54 (Win64) OpenSSL/1.1.1p PHP/8.1.12"
@@ -106,43 +106,50 @@
 
 
 
-    // require_once "functions.php";
+// require_once "functions.php";
 
-    // $url = $_SERVER['REQUEST_URI'];
-    // if($_SERVER["REQUEST_METHOD"] == "POST"){}
-
-
-    // if($_SERVER["REQUEST_METHOD"] == "GET"){
-    //     $route =  split($url);
-
-    //     if($route[count($route) - 1] == ""){
-    //         echo "main page";
-    //     }else if($route[count($route) - 1] == "about"){
-    //         echo "About";
-    //     }
-    // }
-    require_once "functions.php";
+// $url = $_SERVER['REQUEST_URI'];
+// if($_SERVER["REQUEST_METHOD"] == "POST"){}
 
 
-    if($_SERVER["REQUEST_METHOD"] == "GET"){
-        $querys = Query_splitter($_SERVER["QUERY_STRING"]);
-        if(empty($querys)){
-            echo "All Tasks";
-        }else if(!empty($querys["q"])){
-            echo "Search with {$querys['q']} keyword";
-        }
+// if($_SERVER["REQUEST_METHOD"] == "GET"){
+//     $route =  split($url);
+
+//     if($route[count($route) - 1] == ""){
+//         echo "main page";
+//     }else if($route[count($route) - 1] == "about"){
+//         echo "About";
+//     }
+// }
+// require_once "functions.php";
+
+
+// if($_SERVER["REQUEST_METHOD"] == "GET"){
+//     $querys = Query_splitter($_SERVER["QUERY_STRING"]);
+//     if(empty($querys)){
+//         echo "All Tasks";
+//     }else if(!empty($querys["q"])){
+//         echo "Search with {$querys['q']} keyword";
+//     }
 
 
 
-        
-        if(!empty($querys["opt"])){
-            $options = dash_splitter($querys["opt"]);
-            if(in_array("c", $options)){
-                echo "list of all columns";
-            }
-        }
+
+//     if(!empty($querys["opt"])){
+//         $options = dash_splitter($querys["opt"]);
+//         if(in_array("c", $options)){
+//             echo "list of all columns";
+//         }
+//     }
+// }
+require_once "./database/getAll.php";
+
+// echo json_encode(GetAll());
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (!isset($_SERVER["QUERY_STRING"])) {
+        echo json_encode(GetAll());
+    } else {
     }
-
-
-
-?>
+} else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+}
