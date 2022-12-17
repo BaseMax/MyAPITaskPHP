@@ -76,7 +76,6 @@ function GetAll()
 function GetById(int $id)
 {
     global $tableName, $connection;
-    var_dump($connection);
     $query = "SELECT * FROM $tableName WHERE task_id = $id;";
     $stmt = $connection->prepare($query);
     $stmt->execute();
