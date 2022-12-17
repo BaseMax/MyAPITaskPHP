@@ -34,7 +34,7 @@ function deleteTask($query)
 
 function addTask(string $title, string $decsription)
 {
-    $date = date("y-m-d H-i-s", time());
+    $date = date("y-m-d H:i:s", time());
     global $connection, $tableName;
     $query = "INSERT INTO $tableName ( created_at, update_at, title, description) VALUES ('$date', '$date', ?, ?)";
     $stmt = $connection->prepare($query);
@@ -88,4 +88,45 @@ function GetMatchedItems($query)
     $stmt = $connection->prepare($sqlQuery);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
+
+
+
+
+
+
+
+
+function updateTask(int $id, string|null $newTitle = null, string|null $newDescription = null)
+{
+    global $connection, $tableName;
+    $queries = [
+        "title" => "UPDATE $tableName SET title = ?, update_at = ? WHERE task_id = ?",
+        "description" => "UPDATE $tableName SET description = ?, update_at = ? WHERE task_id = ?",
+        "both" => "UPDATE $tableName SET title = ?, description = ?, update_at = ? WHERE task_id = ?"
+    ];
+    $stmt = null;
+    if ($newTitle && $newDescription) {
+        $stmt = $connection->prepare($queries["both"]);
+        if ($stmt->execute([$newTitle, $newDescription, date("y-m-d H:i:s", time()), $id])) {
+            return ["status" => true];
+        } else {
+            return ["status" => false];
+        };
+    } else if ($newTitle) {
+        $stmt = $connection->prepare($queries["title"]);
+        if ($stmt->execute([$newTitle, date("y-m-d H:i:s", time()), $id])) {
+            return ["status" => true];
+        } else {
+            return ["status" => false];
+        };
+    } else if ($newDescription) {
+        $stmt = $connection->prepare($queries["description"]);
+        if ($stmt->execute([$newDescription, date("y-m-d H:i:s", time()), $id])) {
+            return ["status" => true];
+        } else {
+            return ["status" => false];
+        };
+    }
 }
