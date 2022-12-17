@@ -1,6 +1,6 @@
 <?php
 
-require_once "./enum/enum.php";
+require_once "../enum/enum.php";
 
 list(
     $serverName,
