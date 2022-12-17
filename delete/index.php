@@ -1,11 +1,6 @@
 <?php
 
-// if ($_SERVER["REQUEST_URI"] == "/delete/" || $_SERVER["REQUEST_URI"] == "/delete/index.php") {}
-
-require_once "../database/deleteAll.php";
-require_once "../database/delete.php";
-require_once "../database/deleteById.php";
-require_once "../functions.php";
+require_once "../database/database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (!isset($_SERVER["QUERY_STRING"])) {

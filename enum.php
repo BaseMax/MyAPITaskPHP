@@ -1,5 +1,4 @@
 <?php
-
 class Credentials
 {
     public const ServerName = "localhost";
