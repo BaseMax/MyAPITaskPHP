@@ -2,6 +2,13 @@
 
 This is a simple Task Manager API for CRUD operations.
 
+### Actions
+
+- Get tasks
+- Add task
+- Edit task
+- Delete task
+
 First run your mysql and php on your localhost by this command:
 
 ```
